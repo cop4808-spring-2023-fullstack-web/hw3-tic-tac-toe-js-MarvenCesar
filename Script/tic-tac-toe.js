@@ -68,7 +68,7 @@ function handleResultValidation() {
 function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
-
+// Verifies if cell is available or not and if game is still active
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
         return;
     }
@@ -88,3 +88,4 @@ function handleRestartGame() {
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 document.querySelector('.restart').addEventListener('click', handleRestartGame);
+handle
