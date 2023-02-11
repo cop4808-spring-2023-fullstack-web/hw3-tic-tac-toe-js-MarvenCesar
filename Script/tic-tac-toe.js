@@ -1,7 +1,8 @@
 const statusDisplay = document.querySelector('.status');
 
 let gameActive = true;
-let currentPlayer = "X";
+//Random Player Pick
+let currentPlayer = Math.random() < 0.5 ? 'X' :'O';
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
 const winningMessage = () => `Player ${currentPlayer} has won!`;
@@ -30,8 +31,7 @@ function handlePlayerChange() {
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     statusDisplay.innerHTML = currentPlayerTurn();
 }
-
-function handleResultValidation() {
+function checkwin(){
     let roundWon = false;
     for (let i = 0; i <= 7; i++) {
         const winCondition = winningConditions[i];
@@ -51,7 +51,7 @@ function handleResultValidation() {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
-        return;
+        return roundwon;
     }
 
     let roundDraw = !gameState.includes("");
@@ -65,6 +65,16 @@ function handleResultValidation() {
     handlePlayerChange();
 }
 
+
+function handleResultValidation() {
+    checkwin()
+if (gameActive){
+    handleComputerMove();
+    handlePlayerChange()
+}
+  
+}
+
 function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
@@ -73,6 +83,7 @@ function handleCellClick(clickedCellEvent) {
         return;
     }
 
+    
     handleCellPlayed(clickedCell, clickedCellIndex);
     handleResultValidation();
 }
@@ -88,4 +99,27 @@ function handleRestartGame() {
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 document.querySelector('.restart').addEventListener('click', handleRestartGame);
-handle
+handlePlayerChange();
+pickComputerMove();
+
+function handleComputerMove(){
+    pickComputerMove();
+    checkwin();
+    handlePlayerChange()
+}
+function pickComputerMove(){
+
+    while(true){
+        //finds first available spot
+        var m=Math.floor(Math.random()*8);
+        if (gameState[m] =='') // looking for an empty slot
+          break;
+
+    }
+    // m makes the move
+    gameState[m]=currentPlayer;
+    document.getElementById(m).innerHTML=currentPlayer;
+    
+}
+
+
