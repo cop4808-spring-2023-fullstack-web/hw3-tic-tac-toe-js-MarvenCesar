@@ -26,6 +26,7 @@ const winningConditions = [
 function handleCellPlayed(clickedCell, clickedCellIndex) {
     gameState[clickedCellIndex] = currentPlayer;
     clickedCell.innerHTML = currentPlayer;
+   
 }
 
 function handlePlayerChange() {
@@ -34,6 +35,7 @@ function handlePlayerChange() {
 }
 function checkwin(){
     let roundWon = false;
+    let winningSquares = [];
     for (let i = 0; i <= 7; i++) {
         const winCondition = winningConditions[i];
         let a = gameState[winCondition[0]];
@@ -44,6 +46,7 @@ function checkwin(){
         }
         if (a === b && b === c) {
             roundWon = true;
+            winningSquares = winCondition;
             break
         }
     }
@@ -51,8 +54,13 @@ function checkwin(){
     if (roundWon) {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
-        return roundwon;
+        for (let i = 0; i < 3; i++) {
+            let square = document.querySelector(`[data-cell-index="${winningSquares[i]}"]`);
+            square.style.backgroundColor = "rgb(251,100,204)";
     }
+    
+}
+
 
     let roundDraw = !gameState.includes("");
     if (roundDraw) {
@@ -63,17 +71,20 @@ function checkwin(){
         return;
     }
 
-    handlePlayerChange();
+   
 }
+
+
+
 
 
 function handleResultValidation() {
-    checkwin()
+   checkwin();
+   handlePlayerChange();
 if (gameActive){
     handleComputerMove();
-    handlePlayerChange()
 }
-  
+
 }
 
 function handleCellClick(clickedCellEvent) {
@@ -83,8 +94,6 @@ function handleCellClick(clickedCellEvent) {
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
         return;
     }
-
-    
     handleCellPlayed(clickedCell, clickedCellIndex);
     handleResultValidation();
 }
@@ -102,6 +111,7 @@ function handleRestartGame() {
     statusDisplay.style.color = "rgb(65, 65, 65)";
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+    document.querySelectorAll('.cell').forEach(cell => cell.style.backgroundColor = "rgb(255, 255, 255)");
    
     }
 
@@ -115,7 +125,7 @@ function handleComputerMove(){
    // currentPlayer = "O";
     pickComputerMove();
     checkwin();
-    handlePlayerChange()
+    handlePlayerChange();
 }
 function pickComputerMove(){
 
