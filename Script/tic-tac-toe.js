@@ -69,32 +69,32 @@ function checkwin(){
             if (currentPlayer === "X") {
                 xScore++;
                 document.getElementById("Playerscore").innerHTML = xScore;
-               // xScoreDisplay.innerHTML = `X: ${xScore}`;
+               
             } else {
                 oScore++;
                 document.getElementById("Computerscore").innerHTML = oScore
 
-               // oScoreDisplay.innerHTML = `O: ${oScore}`;
+               
             }
     
             return;
         }
     
 
-    
+        let roundDraw = !gameState.includes("");
+        if (roundDraw) {
+            statusDisplay.innerHTML = drawMessage();
+           
+            gameActive = false;
+            statusDisplay.style.color = "rgb(251,100,204)";
+        }
     
 }
     
 
      
 
-    let roundDraw = !gameState.includes("");
-    if (roundDraw) {
-        statusDisplay.innerHTML = drawMessage();
-       
-        gameActive = false;
-        statusDisplay.style.color = "rgb(251,100,204)";
-    }
+  
 
 
 
@@ -130,7 +130,7 @@ function handleRestartGame() {
         currentPlayer = "O";
       }
       statusDisplay.innerHTML = currentPlayerTurn();
-   // currentPlayer = "X";
+    currentPlayer = "X";
     gameState = ["", "", "", "", "", "", "", "", ""];
     statusDisplay.style.color = "rgb(65, 65, 65)";
     statusDisplay.innerHTML = currentPlayerTurn();
