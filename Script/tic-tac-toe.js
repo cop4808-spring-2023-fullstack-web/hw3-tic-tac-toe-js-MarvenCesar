@@ -95,7 +95,20 @@ function handleRestartGame() {
     statusDisplay.style.color = "rgb(65, 65, 65)";
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
-}
+    if (Math.random() <0.5){
+        currentPlayer = "X";}
+        else{
+            while(true){
+                //finds first available spot
+                var m=Math.floor(Math.random()*8);
+                if (gameState[m] =='') // looking for an empty slot
+                  break;
+
+        }
+    }
+
+    }
+
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 document.querySelector('.restart').addEventListener('click', handleRestartGame);
