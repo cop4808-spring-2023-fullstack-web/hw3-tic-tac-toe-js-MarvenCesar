@@ -24,6 +24,17 @@ body {
     margin-top: 2.4rem;
     margin-bottom: 0.6rem;
 }
+.score {
+    display: flex;
+    font-family: Arial;
+    font-weight: bold;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: center;
+    width: 30%;
+}
 
 .box {
     display: grid;

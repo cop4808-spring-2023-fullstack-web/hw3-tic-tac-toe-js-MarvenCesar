@@ -4,6 +4,12 @@ let gameActive = true;
 //Random Player Pick
 let currentPlayer = Math.random() < 0.5 ? 'X' :'O';
 
+const xScoreDisplay = document.querySelector('.Playerscore');
+const oScoreDisplay = document.querySelector('.Computerscore');
+let xScore = 0;
+let oScore = 0;
+
+
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
 const winningMessage = () => `Player ${currentPlayer} has won!`;
@@ -11,6 +17,8 @@ const drawMessage = () => `Game ended in a draw!`;
 const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 
 statusDisplay.innerHTML = currentPlayerTurn();
+//document.getElementById("Playerscore").innerHTML = xScore;
+//document.getElementById("Computerscore").innerHTML = oScore
 
 const winningConditions = [
     [0, 1, 2],
@@ -30,6 +38,7 @@ function handleCellPlayed(clickedCell, clickedCellIndex) {
 }
 
 function handlePlayerChange() {
+  
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     statusDisplay.innerHTML = currentPlayerTurn();
 }
@@ -47,7 +56,7 @@ function checkwin(){
         if (a === b && b === c) {
             roundWon = true;
             winningSquares = winCondition;
-            break
+            break;
         }
     }
 
@@ -56,11 +65,28 @@ function checkwin(){
         gameActive = false;
         for (let i = 0; i < 3; i++) {
             let square = document.querySelector(`[data-cell-index="${winningSquares[i]}"]`);
-            square.style.backgroundColor = "rgb(251,100,204)";
-    }
+            square.style.backgroundColor = "rgb(251,100,204)";}
+            if (currentPlayer === "X") {
+                xScore++;
+                document.getElementById("Playerscore").innerHTML = xScore;
+               // xScoreDisplay.innerHTML = `X: ${xScore}`;
+            } else {
+                oScore++;
+                document.getElementById("Computerscore").innerHTML = oScore
+
+               // oScoreDisplay.innerHTML = `O: ${oScore}`;
+            }
+    
+            return;
+        }
+    
+
+    
     
 }
+    
 
+     
 
     let roundDraw = !gameState.includes("");
     if (roundDraw) {
@@ -68,21 +94,19 @@ function checkwin(){
        
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
-        return;
     }
 
-   
-}
 
 
 
 
 
 function handleResultValidation() {
+    
    checkwin();
    handlePlayerChange();
 if (gameActive){
-    handleComputerMove();
+  handleComputerMove();
 }
 
 }
@@ -122,7 +146,7 @@ handlePlayerChange();
 
 
 function handleComputerMove(){
-   // currentPlayer = "O";
+   
     pickComputerMove();
     checkwin();
     handlePlayerChange();
