@@ -146,10 +146,12 @@ handlePlayerChange();
 
 
 function handleComputerMove(){
-   
+    setTimeout(function() {
+        
     pickComputerMove();
     checkwin();
     handlePlayerChange();
+}, 1200);
 }
 function pickComputerMove(){
 
