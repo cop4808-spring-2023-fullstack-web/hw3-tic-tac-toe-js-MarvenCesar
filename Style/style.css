@@ -1,3 +1,4 @@
+
 html,
 body {
     margin: 0;
@@ -21,7 +22,7 @@ body {
     margin-bottom: 0.6rem;
 }
 
-.container {
+.box {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 3rem 0 1rem 0;

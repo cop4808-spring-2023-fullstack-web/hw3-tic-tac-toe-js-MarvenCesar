@@ -3,6 +3,7 @@ const statusDisplay = document.querySelector('.status');
 let gameActive = true;
 //Random Player Pick
 let currentPlayer = Math.random() < 0.5 ? 'X' :'O';
+
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
 const winningMessage = () => `Player ${currentPlayer} has won!`;
@@ -50,13 +51,13 @@ function checkwin(){
     if (roundWon) {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
-        statusDisplay.style.color = "rgb(251,100,204)";
         return roundwon;
     }
 
     let roundDraw = !gameState.includes("");
     if (roundDraw) {
         statusDisplay.innerHTML = drawMessage();
+       
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
         return;
@@ -90,32 +91,28 @@ function handleCellClick(clickedCellEvent) {
 
 function handleRestartGame() {
     gameActive = true;
-    currentPlayer = "X";
+    if (Math.random() < 0.5) {
+        currentPlayer = "X";
+      } else {
+        currentPlayer = "O";
+      }
+      statusDisplay.innerHTML = currentPlayerTurn();
+   // currentPlayer = "X";
     gameState = ["", "", "", "", "", "", "", "", ""];
     statusDisplay.style.color = "rgb(65, 65, 65)";
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
-    if (Math.random() <0.5){
-        currentPlayer = "X";}
-        else{
-            while(true){
-                //finds first available spot
-                var m=Math.floor(Math.random()*8);
-                if (gameState[m] =='') // looking for an empty slot
-                  break;
-
-        }
-    }
-
+   
     }
 
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 document.querySelector('.restart').addEventListener('click', handleRestartGame);
 handlePlayerChange();
-pickComputerMove();
+
 
 function handleComputerMove(){
+   // currentPlayer = "O";
     pickComputerMove();
     checkwin();
     handlePlayerChange()
