@@ -17,8 +17,7 @@ const drawMessage = () => `Game ended in a draw!`;
 const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
 
 statusDisplay.innerHTML = currentPlayerTurn();
-//document.getElementById("Playerscore").innerHTML = xScore;
-//document.getElementById("Computerscore").innerHTML = oScore
+
 
 const winningConditions = [
     [0, 1, 2],
@@ -89,7 +88,7 @@ function checkwin(){
             statusDisplay.style.color = "rgb(251,100,204)";
         }
     
-}
+} 
     
 
      
