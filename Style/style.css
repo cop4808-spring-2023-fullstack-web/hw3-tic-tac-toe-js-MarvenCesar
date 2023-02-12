@@ -7,13 +7,16 @@ body {
 
 body {
     color: rgb(4, 3, 3);
-    background-color: rgb(255, 255, 255);
+    background-image: url('5183000.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     place-items: center;
     user-select: none;
 }
+
 
 .header {
     font-size: 2.5em;
