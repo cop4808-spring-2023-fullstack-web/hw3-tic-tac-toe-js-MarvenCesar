@@ -103,8 +103,9 @@ function checkwin(){
 function handleResultValidation() {
     
    checkwin();
-   handlePlayerChange();
+ //  handlePlayerChange();
 if (gameActive){
+    handlePlayerChange();
   handleComputerMove();
 }
 
